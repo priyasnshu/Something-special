@@ -186,6 +186,27 @@
   outline-offset: 4px;
 }
 #last-section .ls-note{margin:12px auto 0;font-size:.72rem;color:#927380;opacity:.82}
+#last-section .ls-actions .sn-go{
+  min-height:48px;
+  padding:11px 22px;
+  border:0;
+  border-radius:999px;
+  cursor:pointer;
+  font-family:var(--ls-ui);
+  font-size:.95rem;
+  font-weight:700;
+  color:#fff;
+  background:linear-gradient(135deg,#ff6f98,#e9577f);
+  box-shadow:0 12px 27px rgba(225,75,118,.22);
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+#last-section .ls-actions .sn-go:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 34px rgba(225,75,118,.30);
+}
+#last-section .ls-actions .sn-go:active{transform:scale(.96)}
+#last-section .ls-letter.show + *{scroll-margin-top:20px}
+
 @keyframes lsFadeIn{from{opacity:0}to{opacity:1}}
 @keyframes lsBreathe{0%,100%{transform:scale(.94);opacity:.35}50%{transform:scale(1.06);opacity:.56}}
 @keyframes lsFall{from{transform:translate3d(0,-5vh,0) rotate(0deg)}to{transform:translate3d(16vw,108vh,0) rotate(270deg)}}
@@ -791,6 +812,28 @@ const finishOverlay = document.getElementById('lsFinishOverlay');
   }
 
   /* =========================================================
+   READ NOTE BUTTON
+   ========================================================= */
+  if (readButton && letter) {
+    readButton.addEventListener('click', () => {
+      const isOpen = letter.classList.toggle('show');
+
+      readButton.textContent = isOpen
+        ? 'Hide the little note ↑'
+        : 'Read the little note ✨';
+
+      if (isOpen) {
+        setTimeout(() => {
+          letter.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+        }, 80);
+      }
+    });
+  }
+
+  /* =========================================================
    FINISH BUTTON
 ========================================================= */
 
@@ -816,10 +859,6 @@ if (finishButton && finishOverlay) {
   });
 
 }
-
-  if (backButton) {
-    backButton.addEventListener('click', closeLastSection);
-  }
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && lastSection.classList.contains('show')) {
