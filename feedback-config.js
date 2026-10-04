@@ -7,4 +7,4 @@
   Leave it empty only if you want the built-in share/copy fallback.
   NEVER put the Telegram bot token in this file.
 */
-window.FEEDBACK_ENDPOINT = "";
+window.FEEDBACK_ENDPOINT = "https://bunny-feedback.priyanshu777raj7.workers.dev/";
