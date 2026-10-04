@@ -40,12 +40,12 @@ const PHOTOS = ["1978.jpg", "2033.jpg", "2034.jpg"];
 // Order = order of the "No" taps: tap 1 shows the first, tap 2 the second … tap 6 the last.
 // Keep these files inside a folder named "gifs" beside index.html.
 const NO_GIFS = [
-  "gifs/2691.gif",
-  "gifs/2692.gif",
-  "gifs/2693.gif",
-  "gifs/2695.gif",
-  "gifs/2694.gif",
-  "gifs/2696.gif"
+  "3ec6221c670981178064ca829d213c20.gif",
+  "ba57f1b034c0031ffe66fb83ed7ca89c.gif",
+  "f96bce328d8056fd6ade9627450f1d1d.gif",
+  "bubu-dudu.gif",
+  "bubu-dudu-bubu.gif",
+  "72cbbea047ade8c718ad824765569682.gif"
 ];
 
 // IMAGE + VIDEO SRC ▸ COACHES  (tap a coach on the train)
