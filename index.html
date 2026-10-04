@@ -186,27 +186,6 @@
   outline-offset: 4px;
 }
 #last-section .ls-note{margin:12px auto 0;font-size:.72rem;color:#927380;opacity:.82}
-#last-section .ls-actions .sn-go{
-  min-height:48px;
-  padding:11px 22px;
-  border:0;
-  border-radius:999px;
-  cursor:pointer;
-  font-family:var(--ls-ui);
-  font-size:.95rem;
-  font-weight:700;
-  color:#fff;
-  background:linear-gradient(135deg,#ff6f98,#e9577f);
-  box-shadow:0 12px 27px rgba(225,75,118,.22);
-  transition:transform .2s ease,box-shadow .2s ease;
-}
-#last-section .ls-actions .sn-go:hover{
-  transform:translateY(-2px);
-  box-shadow:0 16px 34px rgba(225,75,118,.30);
-}
-#last-section .ls-actions .sn-go:active{transform:scale(.96)}
-#last-section .ls-letter.show + *{scroll-margin-top:20px}
-
 @keyframes lsFadeIn{from{opacity:0}to{opacity:1}}
 @keyframes lsBreathe{0%,100%{transform:scale(.94);opacity:.35}50%{transform:scale(1.06);opacity:.56}}
 @keyframes lsFall{from{transform:translate3d(0,-5vh,0) rotate(0deg)}to{transform:translate3d(16vw,108vh,0) rotate(270deg)}}
@@ -395,6 +374,22 @@
 
   font-size: 2rem;
 }
+/* FINAL SCREEN POLISH */
+.ls-finish-overlay::before {
+  content:""; position:absolute; width:220px; height:220px; border-radius:50%;
+  background:rgba(255,255,255,.45); filter:blur(2px); top:8%; left:8%; pointer-events:none;
+}
+.ls-finish-box { position:relative; overflow:hidden; }
+.ls-finish-box::after {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(120deg,rgba(255,255,255,.34),transparent 38%,rgba(255,255,255,.12));
+}
+.ls-finish-apology {
+  margin:18px auto 0; max-width:390px; color:#6e5360;
+  font-family:var(--ls-serif); font-size:.98rem; line-height:1.7;
+}
+.ls-finish-signature { margin-top:16px !important; }
+
 </style>
 </head>
 <body translate="no" class="notranslate">
@@ -721,23 +716,17 @@
       🤍
     </div>
 
-    <p class="ls-finish-small">
-      and that's all...
-    </p>
+    <p class="ls-finish-small">a tiny last message</p>
 
-    <h2>
-      I hope this made you smile.
-    </h2>
+    <h2>I hope this made you smile. 🤍</h2>
 
-    <p class="ls-finish-message">
-      Even just a little. 🤍
-    </p>
+    <p class="ls-finish-message">Even if it was only for a little while, I hope these small moments brought a little softness and warmth to your day.</p>
 
     <div class="ls-finish-line"></div>
 
-    <p class="ls-finish-signature">
-      with all my heart ♡
-    </p>
+    <p class="ls-finish-apology">All of this was only for one thing — to say I'm truly sorry for what I did. 🤍</p>
+
+    <p class="ls-finish-signature">with warmth, always ♡</p>
 
   </div>
 
@@ -811,26 +800,22 @@ const finishOverlay = document.getElementById('lsFinishOverlay');
     lastButton.addEventListener('click', openLastSection);
   }
 
-  /* =========================================================
-   READ NOTE BUTTON
-   ========================================================= */
+  // Read / hide the baby-memory note
   if (readButton && letter) {
     readButton.addEventListener('click', () => {
       const isOpen = letter.classList.toggle('show');
-
-      readButton.textContent = isOpen
-        ? 'Hide the little note ↑'
-        : 'Read the little note ✨';
+      readButton.textContent = isOpen ? 'Hide the little note ↑' : 'Read the little note ✨';
+      readButton.setAttribute('aria-expanded', String(isOpen));
 
       if (isOpen) {
-        setTimeout(() => {
-          letter.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-          });
-        }, 80);
+        requestAnimationFrame(() => {
+          letter.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+      } else {
+        readButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
+    readButton.setAttribute('aria-expanded', 'false');
   }
 
   /* =========================================================
@@ -859,6 +844,7 @@ if (finishButton && finishOverlay) {
   });
 
 }
+
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && lastSection.classList.contains('show')) {
