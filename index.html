@@ -135,9 +135,55 @@
 #last-section .ls-final-line::before{content:"♡";position:absolute;top:-2px;left:50%;transform:translateX(-50%);color:#e68ca7;font-size:1rem}
 #last-section .ls-signature{margin:17px 0 0;font-family:var(--ls-script);font-size:2rem;color:var(--ls-pink-dark)}
 #last-section .ls-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}
-#last-section .ls-back {
-  border:1px solid rgba(216,123,148,.23);min-height:48px;padding:11px 18px;border-radius:999px;
-  color:#a25f75;background:rgba(255,255,255,.62);cursor:pointer;font-weight:600;
+/* =========================================================
+   FINISH BUTTON
+========================================================= */
+
+#last-section .ls-finish {
+  border: 0;
+  min-height: 48px;
+  padding: 11px 24px;
+  border-radius: 999px;
+
+  color: #fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff7da0,
+      #e34e77
+    );
+
+  cursor: pointer;
+
+  font-family: var(--ls-ui);
+  font-size: .95rem;
+  font-weight: 700;
+
+  box-shadow:
+    0 12px 27px rgba(225,75,118,.25),
+    inset 0 1px 0 rgba(255,255,255,.35);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+#last-section .ls-finish:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 16px 34px rgba(225,75,118,.34),
+    inset 0 1px 0 rgba(255,255,255,.4);
+}
+
+#last-section .ls-finish:active {
+  transform: scale(.96);
+}
+
+#last-section .ls-finish:focus-visible {
+  outline: 3px solid rgba(255,255,255,.95);
+  outline-offset: 4px;
 }
 #last-section .ls-note{margin:12px auto 0;font-size:.72rem;color:#927380;opacity:.82}
 @keyframes lsFadeIn{from{opacity:0}to{opacity:1}}
@@ -158,7 +204,176 @@
 @media(prefers-reduced-motion:reduce){
   #last-section *,#last-section *::before,#last-section *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+/* =========================================================
+   FINAL "I HOPE THIS MADE YOU SMILE" SCREEN
+========================================================= */
 
+.ls-finish-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 2000000;
+
+  display: grid;
+  place-items: center;
+
+  padding: 24px;
+
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(255,255,255,.96),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 25%,
+      rgba(255,191,214,.8),
+      transparent 32%
+    ),
+    linear-gradient(
+      145deg,
+      #fff0ed,
+      #ffdce8 48%,
+      #e9cce4
+    );
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity .7s ease,
+    visibility .7s ease;
+}
+
+.ls-finish-overlay.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.ls-finish-box {
+  width: min(90vw, 480px);
+
+  padding: 35px 25px 30px;
+
+  border-radius: 32px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.9),
+      rgba(255,248,251,.72)
+    );
+
+  border: 1px solid rgba(255,255,255,.85);
+
+  box-shadow:
+    0 30px 80px rgba(80,37,58,.20),
+    inset 0 1px 0 rgba(255,255,255,.95);
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  transform:
+    translateY(25px)
+    scale(.94);
+
+  transition:
+    transform .8s cubic-bezier(.2,1.25,.3,1);
+}
+
+.ls-finish-overlay.show .ls-finish-box {
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+.ls-finish-heart {
+  font-size: 2.6rem;
+
+  margin-bottom: 10px;
+
+  animation:
+    lsFinishHeart 1.6s ease-in-out infinite;
+}
+
+@keyframes lsFinishHeart {
+
+  0%,100% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1.18);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+}
+
+.ls-finish-small {
+  margin: 0 0 5px;
+
+  color: #c46b86;
+
+  font-family: var(--ls-serif);
+  font-size: .85rem;
+  font-style: italic;
+}
+
+.ls-finish-box h2 {
+  margin: 0;
+
+  color: #e4587e;
+
+  font-family: var(--ls-display);
+
+  font-size:
+    clamp(2rem, 8vw, 3rem);
+
+  line-height: 1.12;
+}
+
+.ls-finish-message {
+  margin: 10px 0 0;
+
+  color: #745f69;
+
+  font-family: var(--ls-serif);
+
+  font-size: 1rem;
+
+  line-height: 1.6;
+}
+
+.ls-finish-line {
+  width: 80px;
+  height: 1px;
+
+  margin: 20px auto 14px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #e59ab0,
+      transparent
+    );
+}
+
+.ls-finish-signature {
+  margin: 0;
+
+  color: #d9476c;
+
+  font-family: var(--ls-script);
+
+  font-size: 2rem;
+}
 </style>
 </head>
 <body translate="no" class="notranslate">
@@ -458,15 +673,54 @@
       </div>
 
       <div class="ls-actions">
-        <button class="sn-go" id="lsReadBtn" type="button">Read the little note ✨</button>
-        <button class="ls-back" id="lsBackBtn" type="button">Back to feedback</button>
-      </div>
+  <button class="sn-go" id="lsReadBtn" type="button">
+    Read the little note ✨
+  </button>
 
-      <p class="ls-note">Two tiny photos. One gentle memory. A whole lot of warmth.</p>
+  <button class="ls-finish" id="lsFinishBtn" type="button">
+    Finish 🤍
+  </button>
+</div>
+
+<p class="ls-note">
+  Two tiny photos. One gentle memory. A whole lot of warmth.
+</p>
     </section>
   </div>
 </section>
+<!-- =========================================================
+     FINAL FINISH MESSAGE
+========================================================= -->
 
+<div class="ls-finish-overlay" id="lsFinishOverlay" aria-hidden="true">
+
+  <div class="ls-finish-box">
+
+    <div class="ls-finish-heart">
+      🤍
+    </div>
+
+    <p class="ls-finish-small">
+      and that's all...
+    </p>
+
+    <h2>
+      I hope this made you smile.
+    </h2>
+
+    <p class="ls-finish-message">
+      Even just a little. 🤍
+    </p>
+
+    <div class="ls-finish-line"></div>
+
+    <p class="ls-finish-signature">
+      with all my heart ♡
+    </p>
+
+  </div>
+
+</div>
 <script src="feedback-config.js"></script>
 <script src="script.js"></script>
 
@@ -476,7 +730,8 @@
   const lastSection = document.getElementById('last-section');
   const lastButton = document.getElementById('sn-last-btn');
   const readButton = document.getElementById('lsReadBtn');
-  const backButton = document.getElementById('lsBackBtn');
+  const finishButton = document.getElementById('lsFinishBtn');
+const finishOverlay = document.getElementById('lsFinishOverlay');
   const feedbackScreen = document.getElementById('sn-fb');
   const letter = document.getElementById('lsLetter');
 
@@ -535,23 +790,32 @@
     lastButton.addEventListener('click', openLastSection);
   }
 
-  if (readButton) {
-    readButton.addEventListener('click', () => {
-      const open = letter.classList.toggle('show');
-      readButton.textContent = open
-        ? 'Hide the little note'
-        : 'Read the little note ✨';
+  /* =========================================================
+   FINISH BUTTON
+========================================================= */
 
-      if (open) {
-        setTimeout(() => {
-          letter.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-          });
-        }, 80);
-      }
-    });
-  }
+if (finishButton && finishOverlay) {
+
+  finishButton.addEventListener('click', () => {
+
+    finishOverlay.classList.add('show');
+
+    finishOverlay.setAttribute(
+      'aria-hidden',
+      'false'
+    );
+
+    /*
+      Put focus inside the final message
+      for accessibility.
+    */
+    setTimeout(() => {
+      finishButton.blur();
+    }, 100);
+
+  });
+
+}
 
   if (backButton) {
     backButton.addEventListener('click', closeLastSection);
