@@ -1,9 +1,0 @@
-name = "abhu-feedback-bot"
-main = "worker.js"
-compatibility_date = "2026-10-04"
-
-# Set these as Worker variables/secrets in Cloudflare.
-# ALLOWED_ORIGIN = "https://YOURNAME.github.io"
-# ALLOWED_ORIGINS = "https://YOURNAME.github.io,https://YOURNAME.pages.dev"
-# TELEGRAM_BOT_TOKEN = secret
-# TELEGRAM_CHAT_ID = secret/variable
