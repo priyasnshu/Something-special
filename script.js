@@ -804,11 +804,11 @@ const BUNNY_FILTER = {
   /* The parts are separate transparent images. Replace any file and nothing else needs to change.
      (An ear image only needs its "base" at the anchor below: default bottom-centre, 84% down, where the soft fade-out starts.) */
   assets: {
-    leftEar:  "assets/bunny/left-ear.webp",
-    rightEar: "assets/bunny/right-ear.webp",
-    nose:     "assets/bunny/nose.webp",
-    teeth:    "assets/bunny/teeth.webp",
-    muzzle:   "assets/bunny/muzzle.webp"
+    leftEar:  "left-ear.webp",
+    rightEar: "pright-ear.webp",
+    nose:     "nose.webp",
+    teeth:    "teeth.webp",
+    muzzle:   "muzzle.webp"
   },
   /* pivot of each image as a fraction of its own width/height */
   anchors: {
