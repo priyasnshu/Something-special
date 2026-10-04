@@ -205,7 +205,7 @@ $("no").addEventListener("click", e => {
   if(noClicks <= NO_GIFS.length) addBubble(NO_GIFS[noClicks - 1]);
 
   $("yes").style.setProperty("--yes-scale", Math.min(1+noClicks*.06, 1.4));
-  if(noClicks < 7){ setTimeout(() => { moveNo(); noLocked = false; }, 120); return; }
+  if(noClicks < 8){ setTimeout(() => { moveNo(); noLocked = false; }, 120); return; }
   $("final-photo").classList.add("show");
   setTimeout(fixBubbles, 650);                          /* card just got taller */
   noFinished = true;
