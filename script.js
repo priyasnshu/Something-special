@@ -44,8 +44,11 @@ const NO_GIFS = [
   "ba57f1b034c0031ffe66fb83ed7ca89c.gif",
   "f96bce328d8056fd6ade9627450f1d1d.gif",
   "bubu-dudu.gif",
+  "bubududu-panda.gif",
   "bubu-dudu-bubu.gif",
-  "72cbbea047ade8c718ad824765569682.gif"
+  "72cbbea047ade8c718ad824765569682.gif",
+
+   
 ];
 
 // IMAGE + VIDEO SRC ▸ COACHES  (tap a coach on the train)
