@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta http-equiv="Content-Language" content="en">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f8dce7">
+<meta name="referrer" content="strict-origin-when-cross-origin"><!-- YouTube embeds need this, otherwise "Error 153" -->
+<title>Home</title>
+<meta name="description" content="Home">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Home">
+<meta property="og:description" content="Home">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Home">
+<meta name="twitter:description" content="Home">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fredoka:wght@500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,700;0,900;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* =========================================================
+   FINAL BABY-MEMORY SECTION
+   Completely scoped so it does not alter the existing app.
+   ========================================================= */
+#last-section {
+  --ls-pink:#ff5b83;
+  --ls-pink-dark:#d9476c;
+  --ls-rose:#f4a8bd;
+  --ls-cream:#fffaf7;
+  --ls-ink:#332932;
+  --ls-muted:#745f69;
+  --ls-ui:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ls-display:'Fredoka',var(--ls-ui);
+  --ls-script:'Great Vibes',cursive;
+  --ls-serif:'Playfair Display',Georgia,serif;
+  position:fixed;
+  inset:0;
+  z-index:1000000;
+  display:none;
+  overflow:auto;
+  color:var(--ls-ink);
+  font-family:var(--ls-ui);
+  background:
+    radial-gradient(circle at 12% 12%,rgba(255,255,255,.95) 0 7%,transparent 25%),
+    radial-gradient(circle at 88% 16%,rgba(255,199,218,.9) 0 8%,transparent 29%),
+    radial-gradient(circle at 70% 90%,rgba(255,230,213,.8) 0 7%,transparent 27%),
+    linear-gradient(145deg,#ffece8 0%,#ffd9e5 44%,#efc9df 100%);
+}
+#last-section.show { display:block; animation:lsFadeIn .65s ease both; }
+#last-section::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.9) 0 1px,transparent 1.5px),
+    radial-gradient(circle,rgba(255,160,190,.5) 0 1px,transparent 1.5px);
+  background-size:76px 76px,113px 113px;
+  background-position:10px 18px,42px 62px;
+  opacity:.42;
+}
+#last-section .ls-scene {
+  min-height:100%;
+  padding:max(24px,env(safe-area-inset-top)) 18px max(28px,env(safe-area-inset-bottom));
+  display:grid;
+  place-items:center;
+  position:relative;
+  overflow:hidden;
+}
+#last-section .ls-glow {
+  position:absolute;width:46vmin;aspect-ratio:1;border-radius:50%;
+  filter:blur(7px);opacity:.45;pointer-events:none;
+  animation:lsBreathe 6s ease-in-out infinite;
+}
+#last-section .ls-glow.one {left:-15vmin;top:10vmin;background:#fff}
+#last-section .ls-glow.two {right:-17vmin;bottom:-4vmin;background:#ffc1d4;animation-delay:-2s}
+#last-section .ls-petal {
+  position:fixed;z-index:1;top:-18px;width:8px;height:13px;
+  border-radius:90% 10% 90% 10%;background:rgba(255,255,255,.82);
+  box-shadow:0 2px 10px rgba(255,255,255,.45);pointer-events:none;
+  animation:lsFall var(--fall) linear infinite;animation-delay:var(--delay);
+  left:var(--left);transform:rotate(var(--rot));
+}
+#last-section .ls-card {
+  position:relative;z-index:5;width:min(94vw,640px);padding:30px 20px 24px;
+  border:1px solid rgba(255,255,255,.8);border-radius:34px;
+  background:linear-gradient(145deg,rgba(255,255,255,.84),rgba(255,248,251,.64));
+  box-shadow:0 28px 75px rgba(80,37,58,.18);
+  backdrop-filter:blur(22px) saturate(1.08);
+  -webkit-backdrop-filter:blur(22px) saturate(1.08);
+  text-align:center;overflow:hidden;isolation:isolate;
+}
+#last-section .ls-card::before {
+  content:"";position:absolute;inset:1px;border-radius:33px;pointer-events:none;
+  background:linear-gradient(120deg,rgba(255,255,255,.78),transparent 35%,rgba(255,255,255,.2));
+  z-index:-1;
+}
+#last-section .ls-eyebrow {margin:0 0 5px;color:var(--ls-pink-dark);font-size:.78rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;opacity:.85}
+#last-section h1 {margin:0;font-family:var(--ls-display);font-size:clamp(2rem,9vw,3.45rem);line-height:1.02;color:var(--ls-pink)}
+#last-section .ls-script-line {margin:2px 0 10px;font-family:var(--ls-script);font-size:clamp(2rem,8vw,3rem);color:#bf627e;line-height:.9}
+#last-section .ls-intro {width:min(100%,490px);margin:12px auto 21px;color:var(--ls-muted);font-size:.95rem;line-height:1.65}
+#last-section .ls-photo-stage {position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px;width:min(100%,510px);margin:0 auto 22px}
+#last-section .ls-memory {
+  position:relative;padding:8px 8px 13px;border-radius:25px;background:rgba(255,255,255,.9);
+  box-shadow:0 18px 44px rgba(117,50,80,.13);transform:translateY(18px) rotate(var(--tilt)) scale(.96);
+  opacity:0;transition:opacity .9s ease,transform 1s cubic-bezier(.2,1.25,.3,1);overflow:hidden;
+}
+#last-section.show .ls-memory {opacity:1;transform:translateY(0) rotate(var(--tilt)) scale(1)}
+#last-section.show .ls-memory:nth-child(2){transition-delay:.18s}
+#last-section .ls-memory::after{content:"";position:absolute;inset:8px;border-radius:19px;border:1px solid rgba(255,171,194,.3);pointer-events:none}
+#last-section .ls-memory-img {
+  position:relative;width:100%;aspect-ratio:4/5;border-radius:19px;overflow:hidden;
+  background:radial-gradient(circle at 50% 20%,#fff 0 8%,transparent 30%),linear-gradient(145deg,#ffdce7,#f8c0d3 55%,#ebacc7);
+}
+#last-section .ls-memory-img img {width:100%;height:100%;display:block;object-fit:cover;object-position:center;opacity:0;transform:scale(1.045);transition:opacity .75s ease,transform 1.2s cubic-bezier(.2,1,.3,1)}
+#last-section .ls-memory-img.loaded img{opacity:1;transform:scale(1)}
+#last-section .ls-photo-placeholder{position:absolute;inset:0;display:grid;place-items:center;padding:18px;color:rgba(99,53,72,.68);text-align:center;line-height:1.4;font-size:.78rem;font-weight:600}
+#last-section .ls-memory-img.loaded .ls-photo-placeholder{display:none}
+#last-section .ls-memory-caption{margin-top:9px;font-family:var(--ls-serif);font-size:.88rem;font-style:italic;color:#7e5265}
+#last-section .ls-heart-seal {
+  position:absolute;left:50%;top:48%;transform:translate(-50%,-50%) scale(0);z-index:4;width:52px;height:52px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(255,255,255,.92);color:var(--ls-pink);font-size:1.25rem;
+  box-shadow:0 12px 30px rgba(162,60,101,.16);animation:lsSealIn .8s cubic-bezier(.2,1.5,.35,1) 1.05s forwards;
+}
+#last-section .ls-letter{max-height:0;opacity:0;overflow:hidden;transform:translateY(10px);transition:max-height 1s ease,opacity .7s ease,transform .7s ease}
+#last-section .ls-letter.show{max-height:900px;opacity:1;transform:translateY(0)}
+#last-section .ls-letter-paper {
+  position:relative;width:min(100%,530px);margin:0 auto;padding:23px 20px 20px;border-radius:22px;
+  background:linear-gradient(rgba(255,250,246,.94),rgba(255,250,246,.94)),repeating-linear-gradient(to bottom,transparent 0 31px,rgba(218,170,184,.14) 32px);
+  border:1px solid rgba(219,167,185,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 12px 28px rgba(111,52,76,.08);
+}
+#last-section .ls-letter-paper::before{content:"♡";position:absolute;top:7px;right:13px;font-size:1.15rem;color:#e69aae;transform:rotate(12deg)}
+#last-section .ls-letter-kicker{margin:0 0 7px;color:#bf6682;font-family:var(--ls-serif);font-size:.85rem;font-style:italic}
+#last-section .ls-letter p{margin:0;font-family:var(--ls-serif);font-size:.94rem;line-height:1.82;color:#5a4650}
+#last-section .ls-final-line {
+  margin:22px auto 0;padding-top:18px;max-width:460px;position:relative;
+  color:#df557f;font-family:var(--ls-serif);font-size:1rem;font-style:italic;font-weight:600;line-height:1.7;
+}
+#last-section .ls-final-line::before{content:"♡";position:absolute;top:-2px;left:50%;transform:translateX(-50%);color:#e68ca7;font-size:1rem}
+#last-section .ls-signature{margin:17px 0 0;font-family:var(--ls-script);font-size:2rem;color:var(--ls-pink-dark)}
+#last-section .ls-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+/* =========================================================
+   FINISH BUTTON
+========================================================= */
+
+#last-section .ls-finish {
+  border: 0;
+  min-height: 48px;
+  padding: 11px 24px;
+  border-radius: 999px;
+
+  color: #fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff7da0,
+      #e34e77
+    );
+
+  cursor: pointer;
+
+  font-family: var(--ls-ui);
+  font-size: .95rem;
+  font-weight: 700;
+
+  box-shadow:
+    0 12px 27px rgba(225,75,118,.25),
+    inset 0 1px 0 rgba(255,255,255,.35);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+#last-section .ls-finish:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 16px 34px rgba(225,75,118,.34),
+    inset 0 1px 0 rgba(255,255,255,.4);
+}
+
+#last-section .ls-finish:active {
+  transform: scale(.96);
+}
+
+#last-section .ls-finish:focus-visible {
+  outline: 3px solid rgba(255,255,255,.95);
+  outline-offset: 4px;
+}
+#last-section .ls-note{margin:12px auto 0;font-size:.72rem;color:#927380;opacity:.82}
+@keyframes lsFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes lsBreathe{0%,100%{transform:scale(.94);opacity:.35}50%{transform:scale(1.06);opacity:.56}}
+@keyframes lsFall{from{transform:translate3d(0,-5vh,0) rotate(0deg)}to{transform:translate3d(16vw,108vh,0) rotate(270deg)}}
+@keyframes lsSealIn{to{transform:translate(-50%,-50%) scale(1)}}
+@media(max-width:430px){
+  #last-section .ls-card{padding:25px 14px 19px;border-radius:28px}
+  #last-section .ls-photo-stage{gap:9px}
+  #last-section .ls-memory{padding:6px 6px 10px;border-radius:20px}
+  #last-section .ls-memory-img{border-radius:15px}
+  #last-section .ls-memory::after{inset:6px;border-radius:15px}
+  #last-section .ls-memory-caption{font-size:.78rem}
+  #last-section .ls-heart-seal{width:44px;height:44px;font-size:1rem}
+  #last-section .ls-letter-paper{padding:20px 15px 17px}
+  #last-section .ls-letter p{font-size:.88rem;line-height:1.72}
+}
+@media(prefers-reduced-motion:reduce){
+  #last-section *,#last-section *::before,#last-section *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+/* =========================================================
+   FINAL "I HOPE THIS MADE YOU SMILE" SCREEN
+========================================================= */
+
+.ls-finish-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 2000000;
+
+  display: grid;
+  place-items: center;
+
+  padding: 24px;
+
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(255,255,255,.96),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 25%,
+      rgba(255,191,214,.8),
+      transparent 32%
+    ),
+    linear-gradient(
+      145deg,
+      #fff0ed,
+      #ffdce8 48%,
+      #e9cce4
+    );
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity .7s ease,
+    visibility .7s ease;
+}
+
+.ls-finish-overlay.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.ls-finish-box {
+  width: min(90vw, 480px);
+
+  padding: 35px 25px 30px;
+
+  border-radius: 32px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.9),
+      rgba(255,248,251,.72)
+    );
+
+  border: 1px solid rgba(255,255,255,.85);
+
+  box-shadow:
+    0 30px 80px rgba(80,37,58,.20),
+    inset 0 1px 0 rgba(255,255,255,.95);
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  transform:
+    translateY(25px)
+    scale(.94);
+
+  transition:
+    transform .8s cubic-bezier(.2,1.25,.3,1);
+}
+
+.ls-finish-overlay.show .ls-finish-box {
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+.ls-finish-heart {
+  font-size: 2.6rem;
+
+  margin-bottom: 10px;
+
+  animation:
+    lsFinishHeart 1.6s ease-in-out infinite;
+}
+
+@keyframes lsFinishHeart {
+
+  0%,100% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1.18);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+}
+
+.ls-finish-small {
+  margin: 0 0 5px;
+
+  color: #c46b86;
+
+  font-family: var(--ls-serif);
+  font-size: .85rem;
+  font-style: italic;
+}
+
+.ls-finish-box h2 {
+  margin: 0;
+
+  color: #e4587e;
+
+  font-family: var(--ls-display);
+
+  font-size:
+    clamp(2rem, 8vw, 3rem);
+
+  line-height: 1.12;
+}
+
+.ls-finish-message {
+  margin: 10px 0 0;
+
+  color: #745f69;
+
+  font-family: var(--ls-serif);
+
+  font-size: 1rem;
+
+  line-height: 1.6;
+}
+
+.ls-finish-line {
+  width: 80px;
+  height: 1px;
+
+  margin: 20px auto 14px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #e59ab0,
+      transparent
+    );
+}
+
+.ls-finish-signature {
+  margin: 0;
+
+  color: #d9476c;
+
+  font-family: var(--ls-script);
+
+  font-size: 2rem;
+}
+/* FINAL SCREEN POLISH */
+.ls-finish-overlay::before {
+  content:""; position:absolute; width:220px; height:220px; border-radius:50%;
+  background:rgba(255,255,255,.45); filter:blur(2px); top:8%; left:8%; pointer-events:none;
+}
+.ls-finish-box { position:relative; overflow:hidden; }
+.ls-finish-box::after {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(120deg,rgba(255,255,255,.34),transparent 38%,rgba(255,255,255,.12));
+}
+.ls-finish-apology {
+  margin:18px auto 0; max-width:390px; color:#6e5360;
+  font-family:var(--ls-serif); font-size:.98rem; line-height:1.7;
+}
+.ls-finish-signature { margin-top:16px !important; }
+
+</style>
+</head>
+<body translate="no" class="notranslate">
+<canvas id="fx"></canvas>
+
+<div id="main-screen">
+  <div id="main-particles"></div>
+  <div id="bubble-layer"></div>
+  <div id="card">
+    <div id="final-photo"><div id="final-slot"></div></div>
+    <h1>I'm So Sorry, Abhu! 💕</h1>
+    <div id="message"><span>I know I messed up. Will you please forgive me? 🥺</span></div>
+    <div id="button-row">
+      <button id="yes" class="button" type="button">Yes 💖</button>
+      <button id="no" class="button" type="button">No</button>
+    </div>
+  </div>
+</div>
+
+<div id="experience">
+  <div class="exp-glow"></div>
+  <iframe id="blossom-bg" title="Blossom" aria-hidden="true" tabindex="-1"></iframe>
+  <div id="progress"><span class="progress-dot active"></span><span class="progress-dot"></span><span class="progress-dot"></span><span class="progress-dot"></span></div>
+
+  <section class="exp-page active">
+    <div class="exp-card">
+      <h2>A Little Something 🤍</h2>
+      <p>There are a few things I wanted to put together for you. Tap the little boxes and reveal them one by one.</p>
+      <div class="photo-grid">
+        <button class="photo-tile"><span class="tile-cover">01</span></button>
+        <button class="photo-tile"><span class="tile-cover">02</span></button>
+        <button class="photo-tile"><span class="tile-cover">03</span></button>
+        <button class="photo-tile"><span class="tile-cover">04</span></button>
+        <button class="photo-tile"><span class="tile-cover">05</span></button>
+        <button class="photo-tile"><span class="tile-cover">06</span></button>
+      </div>
+      <button class="continue" id="page1Next">Continue →</button>
+    </div>
+  </section>
+
+  <section class="exp-page">
+    <div class="note-paper">
+      <h3>A Note For You</h3>
+      <p>I know words cannot undo every moment, but I genuinely regret the things I got wrong. I have thought about it more than once, and I know I could have handled things better.</p>
+      <p>I cannot change what already happened. What I can do is understand it, learn from it, and make sure I do better from here.</p>
+      <div class="player" id="player">
+        <div class="player-top">
+          <div class="player-cover">♪</div>
+          <div class="player-title"><strong id="ptitle"></strong><span id="partist"></span></div>
+        </div>
+        <div class="player-line" id="pline"><div class="player-progress" id="pprog"></div></div>
+        <div class="player-controls">
+          <button class="player-btn" id="pprev" aria-label="Previous">‹</button>
+          <button class="player-btn" id="pplay" aria-label="Play">▶</button>
+          <button class="player-btn" id="pnext" aria-label="Next">›</button>
+        </div>
+        <div class="eq" id="eq"></div>
+        <!-- YOUTUBE SOURCE: SONGS[].yt in the script. The player is created inside #ytbox -->
+        <div class="ytwrap"><div id="ytbox"></div></div>
+        <div class="ytfail" id="ytfail">This song can't play inside the page 😔<br>Tap the button below to listen on YouTube.</div>
+        <a class="ytlink" id="ytlink" target="_blank" rel="noopener">Open on YouTube ↗</a>
+        <div class="playlist" id="plist"></div>
+        <!-- AUDIO SOURCE: set from SONGS[].f in the script (a file in the "songs" folder). Falls back to YouTube (SONGS[].yt) -->
+        <audio id="aud" preload="metadata"></audio>
+      </div>
+      <button class="continue" id="page2Next">There's More →</button>
+    </div>
+  </section>
+
+  <section class="exp-page">
+    <div class="exp-card">
+      <h2>Three Little Things</h2>
+      <p>Nothing complicated. Just three small surprises waiting to be opened.</p>
+      <div class="gifts">
+        <button class="gift"><span class="gift-ribbon"></span><span class="gift-lid"></span><span class="gift-box"></span><span class="gift-label">Open</span></button>
+        <button class="gift"><span class="gift-ribbon"></span><span class="gift-lid"></span><span class="gift-box"></span><span class="gift-label">Open</span></button>
+        <button class="gift"><span class="gift-ribbon"></span><span class="gift-lid"></span><span class="gift-box"></span><span class="gift-label">Open</span></button>
+      </div>
+      <button class="continue" id="page3Next">One Last Thing →</button>
+    </div>
+  </section>
+
+  <section class="exp-page">
+    <div class="exp-card">
+      <svg class="draw-heart" viewBox="0 0 100 90" aria-hidden="true"><path pathLength="100" d="M50 84C14 56 6 36 6 24 6 12 15 6 25 6c11 0 21 8 25 18 4-10 14-18 25-18 10 0 19 6 19 18 0 12-8 32-44 60z"/></svg>
+      <h2>Before You Go... 💗</h2>
+      <p>I wanted the last part to be something you could actually watch unfold.</p>
+      <p>So look up. 🚂✨</p>
+      <button class="continue" id="launchTrain">Continue ✦</button>
+    </div>
+  </section>
+
+  <div id="train-transition"><div class="transition-ring"></div></div>
+
+  <div id="train-scene">
+    <div class="heaven-light"></div>
+    <div id="train-stars"></div>
+    <div class="train-cloud tc1"></div>
+    <div class="train-cloud tc2"></div>
+    <div class="moon">🌙</div>
+    <div class="balloons"><span>🎈</span><span>🎈</span><span>🎈</span></div>
+    <div id="rainbow"></div>
+    <div class="train-mountains"></div>
+    <div class="trees"><span>🌳</span><span>🏡</span><span>🌲</span><span>🌳</span></div>
+    <div class="train-ground"></div>
+    <div class="flowers"><span>🌷</span><span>🌸</span><span>🌼</span><span>🌷</span><span>🌸</span><span>🌼</span><span>🌷</span><span>🌸</span></div>
+    <svg id="rail-svg"><path id="rail-bed" class="rail-bed"></path><path id="rail-ties" class="rail-ties"></path><path id="rail-metal" class="rail-metal"></path><path id="rail-highlight" class="rail-highlight"></path></svg>
+    <div id="train"></div>
+    <div id="lights"></div>
+    <div id="coach-hint">Tap a coach to peek inside 🚃💕</div>
+    <div id="final-message">
+      <h2>I'm Truly Sorry, Abhu 🕊️</h2>
+      <!-- This text is also what appears in the clouds at the very end. Separate paragraphs with a blank <br><br>. -->
+      <div class="full" id="full">
+        <p>I don't even know how to put everything I feel into words. I genuinely regret everything I did that hurt you, and I'm truly sorry for every moment that made you feel bad because of me.<br><br>
+        I keep thinking about what happened, and honestly, I wish I could go back and change those moments. I know saying sorry cannot erase what happened, but I want you to know that this apology is coming from my heart.<br><br>
+        I regret it more than I can properly explain. I'm sorry for my mistakes, sorry for the hurt, and sorry for not thinking enough about how my actions could affect you.<br><br>
+        I don't expect one message to fix everything. I just genuinely hope that, with time, you can forgive me and remember that I am truly sorry.<br><br>
+        You mean a lot to me, Abhu. ❤️</p>
+      </div>
+      <div class="fbtns">
+        <button class="replay" id="toBow">🏹 Continue</button>
+        <button class="replay" id="replay">🚂 Watch Again</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="ending"></div>
+
+  <div id="coach-modal">
+    <div class="cm-card">
+      <button id="cm-close" aria-label="Close">✕</button>
+      <h3 id="cm-title"></h3>
+      <div class="cm-slides" id="cm-slides"></div>
+      <p class="cm-tip">Swipe ↔ for more 💗</p>
+    </div>
+  </div>
+  <div id="toast"></div>
+</div>
+
+<div id="snap">
+  <!-- 1) ask for one simple pic: Yes grows every time she taps No -->
+  <section class="sn-screen" id="sn-ask">
+    <div class="sn-card">
+      <h2 id="sn-ask-h">One last little thing 🥺</h2>
+      <p id="sn-ask-p">Can I please get one simple pic with you? 📸</p>
+      <div id="sn-row">
+        <button class="sn-btn" id="sn-yes" type="button">Yes 💖</button>
+        <button class="sn-btn" id="sn-no" type="button">No</button>
+      </div>
+    </div>
+    <div id="sn-swarm"></div>
+    <div id="sn-count"></div>
+  </section>
+
+  <!-- 2) the camera button -->
+  <section class="sn-screen" id="sn-open">
+    <div class="sn-card">
+      <h2>Yayyy! 🥹💖</h2>
+      <p>Tap the camera and smile for me 🐰</p>
+      <p class="sn-consent">Your browser will ask to use the camera. A photo is only taken when you press the shutter, and you choose whether it is sent with your feedback.</p>
+      <button class="sn-cambtn" id="sn-opencam" type="button" aria-label="Open camera">📷</button>
+    </div>
+  </section>
+
+  <!-- 3) live camera with bunny ears + teeth -->
+  <section class="sn-screen" id="sn-cam">
+    <div class="sn-camcol">
+      <h2 id="sn-title">Smile! 🐰</h2>
+      <div class="sn-wrap" id="sn-wrap">
+        <canvas id="sn-canvas" width="720" height="960"></canvas>
+        <div class="sn-camera-tools" aria-label="Camera controls">
+          <button class="sn-camtool" id="sn-closecam" type="button" aria-label="Close camera">✕</button>
+          <button class="sn-camtool" id="sn-switchcam" type="button" aria-label="Switch camera" disabled>↔</button>
+        </div>
+        <div class="sn-guide" id="sn-guide"></div>
+        <div class="sn-flash" id="sn-flash"></div>
+      </div>
+      <video id="sn-video" playsinline muted autoplay style="position:fixed;left:0;top:0;width:2px;height:2px;opacity:.01;pointer-events:none;z-index:-1"></video>
+      <div class="sn-status" id="sn-status" role="status" aria-live="polite"></div>
+      <button class="sn-shutter" id="sn-shutter" type="button" aria-label="Take photo" disabled></button>
+      <label class="sn-go ghost" id="sn-pick" for="sn-file" hidden style="display:none;cursor:pointer">📱 Use my phone camera instead</label>
+      <button class="sn-go" id="sn-retry" type="button" hidden style="display:none">🔄 Try again</button>
+      <input type="file" id="sn-file" accept="image/*" capture="user" hidden>
+    </div>
+  </section>
+
+  <!-- 4) the result -->
+  <section class="sn-screen" id="sn-res">
+    <div class="sn-resbox">
+      <div class="sn-polaroid"><img id="sn-photo" alt="Your bunny photo"><span>so cute 🐰💕</span></div>
+      <div class="sn-actions">
+        <button class="sn-go ghost" id="sn-retake" type="button">🔄 Retake</button>
+        <a class="sn-go ghost" id="sn-save" download="bunny-pic.jpg" href="#" style="text-decoration:none;display:inline-block;line-height:22px">💾 Save</a>
+        <button class="sn-go" id="sn-next" type="button">Continue 💌</button>
+      </div>
+    </div>
+  </section>
+
+  <pre id="sn-debug"></pre>
+
+  <!-- 5) thanks + feedback -->
+  <section class="sn-screen" id="sn-fb">
+    <div class="sn-card">
+      <div class="sn-form" id="sn-form">
+        <h2>Thank you, Abhu 💖</h2>
+        <p>Thank you for everything. Tell me honestly, how was all this?</p>
+        <div class="sn-stars" id="sn-stars">
+          <button type="button" data-v="1" aria-label="1 heart">❤️</button>
+          <button type="button" data-v="2" aria-label="2 hearts">❤️</button>
+          <button type="button" data-v="3" aria-label="3 hearts">❤️</button>
+          <button type="button" data-v="4" aria-label="4 hearts">❤️</button>
+          <button type="button" data-v="5" aria-label="5 hearts">❤️</button>
+        </div>
+        <textarea class="sn-ta" id="sn-ta" rows="4" maxlength="800" placeholder="Write your feedback here…"></textarea>
+        <label class="sn-attach" id="sn-attach-row"><input type="checkbox" id="sn-attach" checked> Send my bunny pic with it 🐰</label>
+        <div class="sn-note" id="sn-note"></div>
+        <button class="sn-go" id="sn-send" type="button">Send feedback 💌</button>
+      </div>
+      <div class="sn-done" id="sn-done" hidden>
+        <h2>Thank you so much 🥹💖</h2>
+        <p id="sn-done-p">Your feedback means a lot to me.</p>
+        <textarea class="sn-ta sn-copy" id="sn-copy" readonly hidden></textarea>
+        <button class="sn-go" id="sn-last-btn" type="button" style="margin-top:14px">One Last Little Thing 🤍</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- =========================================================
+     FINAL BABY-MEMORY SECTION
+     Shown only after the feedback Thank You screen.
+     ========================================================= -->
+<section id="last-section" aria-labelledby="last-title" aria-hidden="true">
+  <div class="ls-scene">
+    <span class="ls-glow one"></span>
+    <span class="ls-glow two"></span>
+    <div class="ls-petal" style="--left:8%;--fall:12s;--delay:-2s;--rot:12deg"></div>
+    <div class="ls-petal" style="--left:22%;--fall:15s;--delay:-8s;--rot:70deg"></div>
+    <div class="ls-petal" style="--left:47%;--fall:13s;--delay:-5s;--rot:32deg"></div>
+    <div class="ls-petal" style="--left:68%;--fall:17s;--delay:-10s;--rot:84deg"></div>
+    <div class="ls-petal" style="--left:87%;--fall:14s;--delay:-3s;--rot:45deg"></div>
+
+    <section class="ls-card">
+      <p class="ls-eyebrow">one last little thing</p>
+      <h1 id="last-title">A tiny look back…</h1>
+      <p class="ls-script-line">before we say anything</p>
+      <p class="ls-intro">
+        Some memories are special not because they are perfect,
+        but because they remind us of the soft, simple versions of ourselves.
+      </p>
+
+      <div class="ls-photo-stage" aria-label="Two childhood memories">
+        <figure class="ls-memory" style="--tilt:-2.4deg">
+          <div class="ls-memory-img" id="lsPhotoOne">
+            <img id="lsImgOne" alt="My baby picture" loading="eager" decoding="async">
+            <div class="ls-photo-placeholder">Put your baby photo here<br><small>assets/last/my-baby.jpg</small></div>
+          </div>
+          <figcaption class="ls-memory-caption">a little me 🤍</figcaption>
+        </figure>
+
+        <figure class="ls-memory" style="--tilt:2.4deg">
+          <div class="ls-memory-img" id="lsPhotoTwo">
+            <img id="lsImgTwo" alt="Her baby picture" loading="eager" decoding="async">
+            <div class="ls-photo-placeholder">Put her baby photo here<br><small>assets/last/her-baby.jpg</small></div>
+          </div>
+          <figcaption class="ls-memory-caption">a little her 🌷</figcaption>
+        </figure>
+
+        <div class="ls-heart-seal" aria-hidden="true">♡</div>
+      </div>
+
+      <div class="ls-letter" id="lsLetter" aria-live="polite">
+        <div class="ls-letter-paper">
+          <p class="ls-letter-kicker">just something from the heart</p>
+          <p>
+            Looking at these two little pictures makes me smile because they remind me
+            that, before all the complicated moments, we were simply two little people
+            growing, learning, laughing, and becoming who we are today.<br><br>
+            I know a few words can never perfectly explain every feeling, but I hope this
+            small page can carry one simple message: I genuinely value you, I value the
+            memories we have made, and I am grateful for every little moment that has
+            brought us this far. Whatever happens next, I hope the softness, laughter,
+            and kindness in these memories stay with us.<br><br>
+            So here is my warmest little reminder — take care of that beautiful heart,
+            keep smiling, and never forget that the little versions of us would probably
+            be very happy to see how far we have come. 🤍
+          </p>
+
+          <p class="ls-final-line">
+            All of this was only for one thing — to say I'm sorry for what I did. 🤍
+          </p>
+
+          <div class="ls-signature">with warmth, always ♡</div>
+        </div>
+      </div>
+
+      <div class="ls-actions">
+  <button class="sn-go" id="lsReadBtn" type="button">
+    Read the little note ✨
+  </button>
+
+  <button class="ls-finish" id="lsFinishBtn" type="button">
+    Finish 🤍
+  </button>
+</div>
+
+<p class="ls-note">
+  Two tiny photos. One gentle memory. A whole lot of warmth.
+</p>
+    </section>
+  </div>
+</section>
+<!-- =========================================================
+     FINAL FINISH MESSAGE
+========================================================= -->
+
+<div class="ls-finish-overlay" id="lsFinishOverlay" aria-hidden="true">
+
+  <div class="ls-finish-box">
+
+    <div class="ls-finish-heart">
+      🤍
+    </div>
+
+    <p class="ls-finish-small">a tiny last message</p>
+
+    <h2>I hope this made you smile. 🤍</h2>
+
+    <p class="ls-finish-message">Even if it was only for a little while, I hope these small moments brought a little softness and warmth to your day.</p>
+
+    <div class="ls-finish-line"></div>
+    <p class="ls-finish-signature">with warmth, always ♡</p>
+
+  </div>
+
+</div>
+<script src="feedback-config.js"></script>
+<script src="script.js"></script>
+
+<script>
+/* Final baby-memory section connection */
+(() => {
+  const lastSection = document.getElementById('last-section');
+  const lastButton = document.getElementById('sn-last-btn');
+  const readButton = document.getElementById('lsReadBtn');
+  const finishButton = document.getElementById('lsFinishBtn');
+const finishOverlay = document.getElementById('lsFinishOverlay');
+  const feedbackScreen = document.getElementById('sn-fb');
+  const letter = document.getElementById('lsLetter');
+
+  /* Change ONLY these two paths if your photos have different names. */
+  const LAST_PHOTOS = [
+    'file_0000000012508208955808f4868be764.png',
+    'file_000000007c18820898dd938e844f9bad.png'
+  ];
+
+  function loadLastPhoto(imgId, wrapId, src) {
+    const img = document.getElementById(imgId);
+    const wrap = document.getElementById(wrapId);
+    if (!img || !wrap) return;
+
+    img.addEventListener('load', () => wrap.classList.add('loaded'), { once: true });
+    img.addEventListener('error', () => {
+      console.warn('Final-section photo could not be loaded:', src);
+    }, { once: true });
+
+    img.src = src;
+  }
+
+  loadLastPhoto('lsImgOne', 'lsPhotoOne', LAST_PHOTOS[0]);
+  loadLastPhoto('lsImgTwo', 'lsPhotoTwo', LAST_PHOTOS[1]);
+
+  function openLastSection() {
+    if (!lastSection) return;
+
+    if (feedbackScreen) feedbackScreen.classList.remove('active');
+
+    lastSection.classList.add('show');
+    lastSection.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('last-section-open');
+
+    window.scrollTo(0, 0);
+
+    setTimeout(() => {
+      const first = document.getElementById('lsReadBtn');
+      if (first) first.focus({ preventScroll: true });
+    }, 500);
+  }
+
+  function closeLastSection() {
+    if (!lastSection) return;
+
+    lastSection.classList.remove('show');
+    lastSection.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('last-section-open');
+
+    if (feedbackScreen) feedbackScreen.classList.add('active');
+
+    if (lastButton) lastButton.focus({ preventScroll: true });
+  }
+
+  if (lastButton) {
+    lastButton.addEventListener('click', openLastSection);
+  }
+
+  // Read / hide the baby-memory note
+  if (readButton && letter) {
+    readButton.addEventListener('click', () => {
+      const isOpen = letter.classList.toggle('show');
+      readButton.textContent = isOpen ? 'Hide the little note ↑' : 'Read the little note ✨';
+      readButton.setAttribute('aria-expanded', String(isOpen));
+
+      if (isOpen) {
+        requestAnimationFrame(() => {
+          letter.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+      } else {
+        readButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+    readButton.setAttribute('aria-expanded', 'false');
+  }
+
+  /* =========================================================
+   FINISH BUTTON
+========================================================= */
+
+if (finishButton && finishOverlay) {
+
+  finishButton.addEventListener('click', () => {
+
+    finishOverlay.classList.add('show');
+
+    finishOverlay.setAttribute(
+      'aria-hidden',
+      'false'
+    );
+
+    /*
+      Put focus inside the final message
+      for accessibility.
+    */
+    setTimeout(() => {
+      finishButton.blur();
+    }, 100);
+
+  });
+
+}
+
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && lastSection.classList.contains('show')) {
+      closeLastSection();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
