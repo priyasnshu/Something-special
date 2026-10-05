@@ -74,10 +74,10 @@ const COACHES = [
 //   a  = optional small grey line under the name (leave it out to show only the name)
 const SONGS = [
   // LIST 1 — ✏️ WRITE THE SONG NAME between the quotes of  t:
-{ t: "Khat", f: "songs/khat,mp3", yt: "LUgpPmj6nR8" },
+{ t: "Khat", f: "Khat .mp3", yt: " " },
 
   // LIST 2 — Kaise Hua  (spare YouTube ID if the first one won't embed: "WKv07mnKVEE")
-  { t: "Kaise Hua", f: "songs/kaise-hua.mp3", yt: "nfaa6lh9xH4" }
+  { t: "Kaise Hua", f: "Kaise hua.m4a", yt: " " }
 ];
 
 /* ===================================================================== */
